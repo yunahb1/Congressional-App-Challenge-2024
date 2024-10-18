@@ -1,0 +1,503 @@
+### OVERALL DESCRIPTION ###
+# To raise awareness about the low blood supply issue, this game promotes and educates
+# users about the process of volunteering or donating at a blood drive. Through three
+# activities and informational slides in between, this game simulates what someone
+# would experience when donating blood or replicate the tasks someone may be asked to
+# complete during a volunteer shift.
+
+
+### BACKGROUND COLOR ###
+app.background = rgb(110, 31, 25)
+
+
+### TITLE PAGE ###
+app.url_title = 'cmu://790185/30932903/Title.png' # SCREEN 0: "Blood Drives: An Introduction"
+firstLine = Image(app.url_title, 70, 85)
+firstLine.width /= 1.2
+firstLine.height /= 1.2
+
+app.url_firstInstruction = 'cmu://790185/30933054/title1.png' # SCREEN 0:"Click --> arrow to proceed"
+firstInstruction = Image(app.url_firstInstruction, 25, 240)
+firstInstruction.width /= 1.9
+firstInstruction.height /= 1.9
+
+title = Group(firstLine, 
+            firstInstruction
+            )
+title.visible = True
+
+
+### DONOR SCREENING EXPLANATION ###
+app.url_Donors = 'cmu://790185/30906210/Donors2.png' # SCREEN 1: "DONORS"
+Donors = Image(app.url_Donors, 0, 100)
+Donors.width /= 3
+Donors.height /= 3
+
+Donors = Group(Donors,
+                Rect(0, 55, 400, 70, fill=rgb(110, 31, 25)) # Rectangle to cover line on DONOR image
+                )
+Donors.visible = False
+
+app.url_AgeHealth = 'cmu://790185/30910474/Explanation5.png' # SCREEN 2: Age and Health requirements
+AgeHealth = Image(app.url_AgeHealth, 25, 100)
+AgeHealth.width /= 3
+AgeHealth.height /= 3
+AgeHealth.visible = False
+
+app.url_HeightWeightTravel = 'cmu://790185/30910704/Explanation6.png' # SCREEN 3: Height, Weight, and Travel requirements
+HeightWeightTravel = Image(app.url_HeightWeightTravel, 20, 70)
+HeightWeightTravel.width /= 3
+HeightWeightTravel.height /= 3
+HeightWeightTravel.visible = False
+
+app.url_Instructions = 'cmu://790185/30925407/Instructions1.png' # SCREEN 4: Donor Screening Activity Instructions
+donorInstructions = Image(app.url_Instructions, 25, 70)
+donorInstructions.width /= 2
+donorInstructions.height /= 2
+donorInstructions.visible = False
+
+
+### DONOR SCREENING ACTIVITY ###
+eligibleButton = Group( # Creating ELIGIBLE button for SCREENS 5 and 6
+                    Rect (40, 330, 120, 40, fill='green'),
+                    Label("Eligible", 100, 350, fill='white', size=18)
+                    )
+eligibleButton.visible = False
+
+ineligibleButton = Group( # Creating INELIGIBLE button for SCREENS 5 and 6
+                    Rect (240, 330, 120, 40, fill='red'),
+                    Label("Ineligible", 300, 350, fill='white', size=18)
+                    )
+ineligibleButton.visible = False
+
+app.url_lewisBarnaby = 'cmu://790185/30710628/Barnaby,+Lewis.png' # SCREEN 5: Sample donor information: LEWIS BARNABY
+lewisBarnaby = Image(app.url_lewisBarnaby, 40, 40, width=320, height=230)
+lewisBarnaby.visible = False
+
+app.url_weightHeightMen = 'cmu://790185/30709823/WeightHeightMen.png' # SCREEN 5: Height and Weight requirement table for men from the Red Cross
+weightHeightMen = Image(app.url_weightHeightMen, 30, 240, width=340, height=70)
+weightHeightMen.visible = False
+
+app.url_shawnyaTopaz = 'cmu://790185/30940195/Shawnya+Topaz2.png' # SCREEN 6: Sample donor information: SHAWNYA TOPAZ
+shawnyaTopaz = Image(app.url_shawnyaTopaz, 40, 30, width=320, height=230)
+shawnyaTopaz.visible = False
+
+app.url_weightHeightWomen = 'cmu://790185/30708899/WeightHeightWomenEdited1.png' # SCREEN 6: Height and Weight requirement table for women from the Red Cross
+weightHeightWomen = Image(app.url_weightHeightWomen, 15, 240, width=370, height=70)
+weightHeightWomen.visible = False
+
+screeningActivityLB = Group( # Grouping LEWIS BARNABY Sample Donor Info and Men's Height/Weight Requirement Table
+                    lewisBarnaby,
+                    weightHeightMen
+                    )
+screeningActivityLB.visible = False
+
+screeningActivityST = Group( # Grouping SHAWNYA TOPAZ Sample Donor Info and Women's Height/Weight Requirement Table
+                    shawnyaTopaz,
+                    weightHeightWomen
+                    )
+screeningActivityST.visible = False
+
+
+### DRAWING BLOOD EXPLANATION ###
+app.url_bloodEquipment = 'cmu://790185/30941015/bloodEquipment1.png' # SCREEN 7: Infographic of equipment needed to draw blood
+bloodEquipment = Image(app.url_bloodEquipment, 10, 90)
+bloodEquipment.width /= 2.5
+bloodEquipment.height /= 2.5 
+bloodEquipment.visible = False
+
+app.url_equipmentTitle = 'cmu://790185/30941049/equipmentTitle1.png' # SCREEN 7: "Blood Draw Equipment" title
+equipmentTitle = Image(app.url_equipmentTitle, 30, 35)
+equipmentTitle.width /= 2.3
+equipmentTitle.height /= 2.3
+equipmentTitle.visible = False
+
+app.url_armAnatomy = 'cmu://790185/30941168/armAnatomy1.png' # SCREEN 8: arm diagram with veins labeled
+armAnatomy = Image(app.url_armAnatomy, 40, 65)
+armAnatomy.width /= 3
+armAnatomy.height /= 3
+armAnatomy.visible = False
+
+app.url_anatomyTitle = 'cmu://790185/30941111/veinTitle.png' # SCREEN 8: "Superficial Veins in Right Arm" title
+anatomyTitle = Image(app.url_anatomyTitle, 30, 20)
+anatomyTitle.width /= 3
+anatomyTitle.height /= 3
+anatomyTitle.visible = False
+
+app.url_ask = 'cmu://790185/30926360/ask1.png' # SCREEN 9: optional participation request for blood draw activity
+ask = Image(app.url_ask, 30, 65)
+ask.width /= 1.6
+ask.height /= 1.6
+ask.visible = False
+
+app.url_bloodInstructions = 'cmu://790185/30941161/bloodInstructions1.png' # SCREEN 10: Blood Draw Activity Instructions
+bloodInstructions = Image(app.url_bloodInstructions, 15, 60)
+bloodInstructions.width /= 1.8
+bloodInstructions.height /= 1.8
+bloodInstructions.visible = False
+
+
+### BLOOD DRAW ACTIVITY ###
+app.url_armVeins = 'cmu://790185/30711618/arm+With+Veins.png' # SCREEN 11: handdrawn arm with veins
+arm = Image(app.url_armVeins, 80, 20)
+arm.width /= 3.5
+arm.height /= 3.5
+arm.rotateAngle += 10
+arm.visible = False
+
+vein = Line(177, 201, 189, 191, fill=rgb(113, 126, 185)) # SCREEN 11: median basilic vein that needle must hit to draw blood in activity
+vein.visible = False
+
+app.url_needle = 'cmu://790185/30853685/Intro+to+Programming-58.png' # SCREEN 11: handdrawn butterfly needle
+needle = Image(app.url_needle, 283, 215)
+needle.visible = False
+needle.width /= 10
+needle.height /= 10
+
+stopWatch = Label(0, 200, 150) # Invisible stopwatch used for blood bag filling in Blood Draw Activity and for "Try again!" message in Sorting Activity
+stopWatch.visible = False
+
+
+### SORTING FOODS AND FLUIDS EXPLANATION ###
+app.url_sortingInstructions = 'cmu://790185/30938168/Instructions+2.png' # SCREEN 12: Sorting Activity Instructions
+sortingInstructions = Image(app.url_sortingInstructions, 30, 105)
+sortingInstructions.width /= 4
+sortingInstructions.height /= 4
+sortingInstructions.visible = False
+
+app.url_sortingExplanation = 'cmu://790185/30940096/Explanation7.png' # SCREEN 14: Sorting Activity Explanation
+sortingExplanation = Image(app.url_sortingExplanation, 45, 65)
+sortingExplanation.width /= 3
+sortingExplanation.height /= 3
+sortingExplanation.visible = False
+
+
+### SORTING FOODS AND FLUIDS ACTIVITY ###
+sortingActivity = Group(Line(200, 40, 200, 290), # SCREEN 13: screen visuals for Sorting Activity
+                    Label("RECOMMENDED", 300, 60, size=15, fill='green'),
+                    Label("NOT RECOMMENDED", 100, 60, size=15, fill='red'),
+                    Rect(20, 300, 360, 80, fill='beige'),
+                    Label('Press ENTER to submit your answer!', 200, 340, size=15)) 
+sortingActivity.visible = False
+
+app.url_water = 'cmu://790185/30837227/waterBottle.png' # SCREEN 13: water bottle icon (iStock photos)
+water = Image(app.url_water, 35, 310)
+water.width /= 6
+water.height /= 6
+water.visible = False
+
+app.url_fruitsVeggies = 'cmu://790185/30837441/fruitsVeggies.png' # SCREEN 13: fruits and veggies icon (iStock photos)
+fruitVeggie = Image(app.url_fruitsVeggies, 80, 310)
+fruitVeggie.width /= 3
+fruitVeggie.height /= 3
+fruitVeggie.visible = False
+
+app.url_runningExercise = 'cmu://790185/30848798/runningMan.png' # SCREEN 13: exercise icon (iStock photos)
+exercise = Image(app.url_runningExercise, 200, 310)
+exercise.width /= 8
+exercise.height /= 8
+
+app.url_weight = 'cmu://790185/30849385/weights1.png' # SCREEN 13: weight icon (iStock photos)
+weight = Image(app.url_weight, 225, 355)
+weight.width /= 9
+weight.height /= 9
+
+exWeight = Group(weight, exercise) # SCREEN 13: grouping exercise and weight icons together
+exWeight.visible = False
+
+app.url_fatFood = 'cmu://790185/30849691/fattyFood.png' # SCREEN 13: fast foods icon
+fatFood = Image(app.url_fatFood, 285, 310)
+fatFood.width /= 11
+fatFood.height /= 11
+fatFood.visible = False
+
+tryAgain = Label("Try again!", 200, 200, fill='white', bold=True, size=26) # SCREEN 13: "Try again!" message
+tryAgain.visible = False
+
+
+### THANK YOU / FINAL SCREEN
+app.url_thankYou = 'cmu://790185/30940956/thank+you.png' # SCREEN 15: "Thank you for playing!" message
+thankYou = Image(app.url_thankYou, 50, 150)
+thankYou.width /= 2
+thankYou.height /= 2
+thankYou.visible = False
+
+
+### FLIPPING BETWEEN SCREENS/ACTIVITIES (onKeyPress) ###
+app.pageNum = 0 # Page number counter starts at zero
+        
+def onKeyPress(key):
+    if (key == 'y'):
+        if (app.pageNum == 9): # If "y" pressed, Blood Draw Permission to Blood Draw Activity
+            ask.visible = False
+            app.background = rgb(110, 31, 25)
+            bloodInstructions.visible = True
+            app.pageNum += 1
+
+    if (key == 'n'):
+        if (app.pageNum == 9): # If "n" pressed, skip Blood Draw Activity and go to Sorting Activity
+            app.pageNum = 11
+            ask.visible = False
+            arm.visible = False
+            needle.visible = False
+            vein.visible = False
+            wellDone.visible = False
+            app.background = rgb(110, 31, 25)
+            sortingInstructions.visible = True
+            
+    if (key == 'right'): # Moves one screen forward when 'right arrow' key pressed
+        if (app.pageNum == 0): # Title to Donor
+            title.visible = False
+            app.background = rgb(110, 31, 25)
+            Donors.visible = True
+        
+        elif (app.pageNum == 1): # Donor to Age/Health Requirement
+            Donors.visible = False
+            AgeHealth.visible = True
+            
+        elif (app.pageNum == 2): # Age/Health Requirement to Height/Weight/Travel Requirement
+            AgeHealth.visible = False
+            HeightWeightTravel.visible = True
+            
+        elif (app.pageNum == 3): # Height/Weight/Travel Requirement to Donor Screening Activity Instructions
+            HeightWeightTravel.visible = False
+            donorInstructions.visible = True
+        
+        elif (app.pageNum == 4): # Donor Screening Activity Instructions to LEWIS BARNABY Activity
+            donorInstructions.visible = False
+            app.background = rgb(238, 231, 215)
+            screeningActivityLB.visible = True
+            eligibleButton.visible = True
+            ineligibleButton.visible = True
+        
+        elif (app.pageNum == 5): # LB Activity to SHAWNYA TOPAZ Activity
+            screeningActivityLB.visible = False
+            screeningActivityST.visible = True
+            eligibleButton.visible = True
+            ineligibleButton.visible = True
+            if (confetti.visible == True): # If confetti is visible, confetti is not visible
+                confetti.visible = False
+            
+        elif (app.pageNum == 6): # ST Activity to Blood Draw Equipment
+            eligibleButton.visible = False
+            ineligibleButton.visible = False
+            screeningActivityST.visible = False
+            app.background = 'white'
+            bloodEquipment.visible = True
+            equipmentTitle.visible = True
+            if (confetti.visible == True): # If confetti is visible, confetti is not visible
+                confetti.visible = False
+        
+        elif (app.pageNum == 7): # Blood Draw Equipment to Arm/Vein Anatomy
+            bloodEquipment.visible = False
+            equipmentTitle.visible = False
+            armAnatomy.visible = True
+            anatomyTitle.visible = True
+            
+        elif (app.pageNum == 8): # Arm/Vein Anatomy to Blood Draw Activity Participation Permission
+            armAnatomy.visible = False
+            anatomyTitle.visible = False
+            app.background = rgb(110, 31, 25)
+            ask.visible = True
+        
+        elif (app.pageNum == 10): # Blood Draw Activity Instructions to Blood Draw Activity
+            bloodInstructions.visible = False
+            arm.visible = True
+            needle.visible = True
+            vein.visible = True
+        
+        elif (app.pageNum == 11): # Blood Draw Activity to Sorting Activity Instructions
+            arm.visible = False
+            needle.visible = False
+            stopWatch.visible = False
+            vein.visible = False
+            wellDone.visible = False
+            sortingInstructions.visible = True
+
+        elif (app.pageNum == 12): # Sorting Activity Instructions to Sorting Activity
+            sortingInstructions.visible = False
+            app.background = rgb(238, 231, 215)
+            sortingActivity.visible = True
+            water.visible = True
+            fruitVeggie.visible = True
+            exWeight.visible = True
+            fatFood.visible = True
+        
+        elif (app.pageNum == 13): # Sorting Activity to Sorting Activity Explanation
+            if (wellDone.visible == True):
+                wellDone.visible = False
+            sortingActivity.visible = False
+            water.visible = False
+            fruitVeggie.visible = False
+            exWeight.visible = False
+            fatFood.visible = False
+            app.background = rgb(110, 31, 25)
+            sortingExplanation.visible = True
+        
+        elif (app.pageNum == 14): # Sorting Activity Explanation to Thank You for Playing
+            sortingExplanation.visible = False
+            thankYou.visible = True
+            
+        if (app.pageNum != 9): # Adds one value to Page Number counter when 'right arrow' key is pressed to progress screens forward --> pageNum=9 is skipped because 'y' or 'n' key is pressed then
+            app.pageNum += 1
+        
+    if (key == 'backspace'): # SCREEN 5 & 6: Erases red "Try again" message when Donor Screening Activity answer is incorrect to return to the activity
+        if (incorrectMessage.visible == True):
+            incorrectMessage.visible = False
+            
+    # SORTING ACTIVITY CHECK
+    if (key == 'enter'): # SCREEN 13: checks if all four icons were sorted correctly
+        if (water.centerX >= 200 and water.centerY <= 290):
+            if (fruitVeggie.centerX >= 200 and fruitVeggie.centerY <= 290):
+                if (exWeight.centerX <= 200 and exWeight.centerY <= 290):
+                    if (fatFood.centerX <= 200 and fatFood.centerY <= 290): # SCREEN 13: if sorted correctly, wellDone message appears
+                        wellDone.visible = True # Change to confetti or "Good job" message
+        else: # SCREEN 13: if one or more icons were sorted incorrectly, "Try again" message appears
+            tryAgain.visible = True
+            
+            
+
+### CLICKING BUTTONS (onMousePress) for hitting eligible/ineligible buttons ###
+
+incorrectMessage = Group(Rect(0, 0, 400, 400, fill='red'), # "Incorrect" message appears when wrong button is pressed in the Donor Screening Activity
+                    Label('Try again!', 200, 180, size=18),
+                    Label('Press BACKSPACE to return to the activity', 200, 210, size=18)
+                    )
+incorrectMessage.visible = False
+
+app.url_confetti = 'cmu://790185/30798786/confetti78.png' # Confetti
+confetti = Image(app.url_confetti, 0, 0)
+confetti.visible = False
+
+def onMousePress(mouseX, mouseY):
+    # LB Activity 
+    if (screeningActivityLB.visible == True):
+        if (eligibleButton.hits(mouseX, mouseY) and eligibleButton.visible == True): # If LB Activity and Eligible Button pressed, Incorrect message appears
+            screeningActivityLB.visible = False
+            incorrectMessage.visible = True
+        if (ineligibleButton.hits(mouseX, mouseY) and ineligibleButton.visible == True): # If LB Activity and Ineligible Button pressed, confetti appears 
+            confetti.visible = True
+    if (screeningActivityLB.visible == False): 
+        if (incorrectMessage.hits(mouseX, mouseY) and incorrectMessage.visible == True):
+            incorrectMessage.visile = False        
+            screeningActivityLB.visible = True
+    
+    # ST activity 
+    if (screeningActivityST.visible == True): 
+        if (eligibleButton.hits(mouseX, mouseY) and eligibleButton.visible == True): # If ST Activity and Eligible Button pressed, confetti appears
+            confetti.visible = True
+        if (ineligibleButton.hits(mouseX, mouseY) and ineligibleButton.visible == True): # If ST Activity and Ineligible Button pressed, Incorrect message appears
+            screeningActivityST.visible = False
+            incorrectMessage.visible = True
+    # if (screeningActivityST.visible == False):
+    #     if (incorrectMessage.hits(mouseX, mouseY) and incorrectMessage.visible == True):
+    #         incorrectMessage.visile = False        
+    #         screeningActivityST.visible = True
+
+
+### MOVING NEEDLE (onMouseDrag) ###
+def onKeyHold(keys):
+    # needle movement
+    if ('a' in keys): # When 'a' key held, needle moves left
+        needle.centerX -= 5
+    if ('w' in keys): # When 'w' key held, needle moves up
+        needle.centerY -= 5
+    if ('s' in keys): # When 's' key held, needle moves down
+        needle.centerY += 5
+    if ('d' in keys): # When 'd' key held, needle moves right
+        needle.centerX += 5
+    
+
+### onStep ###
+def onStep():
+    # print(app.pageNum) # Checks which screen is visible
+    # Wraparound for needle
+    if (needle.left>400): 
+        needle.right = 0
+    if (needle.right<0):
+        needle.left = 0
+    if (needle.top > 400):
+        needle.bottom = 0
+    if (needle.bottom < 0):
+        needle.top = 400
+        
+    # To make bags fill when needle is in the correct place
+    if (needle.hitsShape(vein)):
+        stopWatch.value += 1
+        bloodFill()
+        
+    if (tryAgain.visible == True): 
+        stopWatch.value += 1
+        if (stopWatch.value == 100): # If Sorting Activity Try Again message is visible, it disappears when stopWatch.value = 100
+            tryAgain.visible = False
+        
+app.url_bag0 = 'cmu://790185/30853452/Intro+to+Programming-54.png' # Empty blood bag
+bag0 = Image(app.url_bag0, 15, 8)
+bag0.visible = False
+bag0.width /= 10
+bag0.height /= 10
+
+app.url_bag1 = 'cmu://790185/30853581/Intro+to+Programming-55.png' # First level filled blood bag
+bag1 = Image(app.url_bag1, 15, 8)
+bag1.visible = False
+bag1.width /= 10
+bag1.height /= 10
+
+app.url_bag2 = 'cmu://790185/30853610/Intro+to+Programming-56.png' # Second level filled blood bag
+bag2 = Image(app.url_bag2, 15, 8)
+bag2.visible = False
+bag2.width /= 10
+bag2.height /= 10
+
+app.url_bag3 = 'cmu://790185/30853652/Intro+to+Programming-57.png' # Full blood bag
+bag3 = Image(app.url_bag3, 15, 8)
+bag3.visible = False
+bag3.width /= 10
+bag3.height /= 10
+
+wellDone = Label("Great job!", 200, 200, fill='white', bold=True, size=26) # WellDone mesage
+wellDone.visible = False
+
+def bloodFill():
+    if (stopWatch.value <= 100): # If stopWatch value is less than or equal to 100, empty bag is visible 
+        bag0.visible = True
+    elif (stopWatch.value <= 200): # If stopWatch value is less than or equal to 200, first level filled bag is visible
+        bag0.visible = False
+        bag1.visible = True
+    elif (stopWatch.value <= 300): # If stopWatch value is less than or equal to 300, second level filled bag is visible
+        bag1.visible = False
+        bag2.visible = True
+    elif (stopWatch.value <= 400): # If stopWatch value is less than or equal to 400, full bag and wellDone message are visible
+        bag2.visible = False
+        bag3.visible = True
+        wellDone.visible = True
+    else: # If stopWatch value is greater than 400, Blood Draw Activity is not visible and Sorting Instructions are visible
+        bag3.visible = False
+        wellDone.visible = False
+        needle.centerX = 500
+        stopWatch.value = 0
+        app.pageNum = 12
+        ask.visible = False
+        arm.visible = False
+        needle.visible = False
+        vein.visible = False
+        wellDone.visible = False
+        app.background = rgb(110, 31, 25)
+        sortingInstructions.visible = True
+        
+    
+### SORTING ACTIVITY 
+
+def onMouseDrag(mouseX, mouseY):
+    if (water.hits(mouseX, mouseY)): # Moves water bottle icon onMouseDrag
+        water.centerX = mouseX
+        water.centerY = mouseY
+    if (fruitVeggie.hits(mouseX, mouseY)): # Moves fruits and veggies icon onMouseDrag
+        fruitVeggie.centerX = mouseX
+        fruitVeggie.centerY = mouseY
+    if (exWeight.hits(mouseX, mouseY)): # Moves exercise and weights icon onMouseDrag
+        exWeight.centerX = mouseX
+        exWeight.centerY = mouseY
+    if (fatFood.hits(mouseX, mouseY)): # Moves fast foods icon onMouseDrag
+        fatFood.centerX = mouseX
+        fatFood.centerY = mouseY
